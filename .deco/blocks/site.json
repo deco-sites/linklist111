@@ -23,5 +23,14 @@
   "firstByteThresholdMS": false,
   "theme": {
     "__resolveType": "Vanilla"
+  },
+  "abTesting": {
+    "replaces": [],
+    "includeScriptsToHead": {
+      "includes": []
+    }
+  },
+  "flavor": {
+    "framework": "fresh"
   }
 }
