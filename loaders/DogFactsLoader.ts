@@ -1,16 +1,26 @@
-interface Props {
+export const API = new URL(`https://dogapi.dog/api/facts?number=1`)
+export type DogFacts = string[];
+
+export interface Props {
   /**
-  * @description The description of name.
+  * @description Number of dog facts.
   */
-  name?: string;
+  numberOfFacts?: number;
 }
 
 export interface Returns {
-  name: string
+  facts?: DogFacts;
+  success?: boolean;
 }
 
-export default function loader({ name  = "Capy" }: Props): Returns {
-  return { 
-    name,
-  }
+async function loader(
+  { numberOfFacts = 1 }: Props,
+  _req: Request,
+): Promise<Returns> {
+  API.searchParams.set('number', String(numberOfFacts ?? 1));
+  const res = await fetch(API).then((r) => r.json());
+
+  return res;
 }
+
+export default loader;
